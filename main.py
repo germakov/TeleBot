@@ -23,11 +23,12 @@ try:
             bot.send_message(message.from_user.id, "Привет, чем я могу тебе помочь?")
         elif message.text == "/help":
             bot.send_message(message.from_user.id, "Напиши привет")
+        elif message.text == "/start":
+            bot.send_message(message.from_user.id, start)
         else:
             bot.send_message(message.from_user.id, "Я тебя не понимаю. Напиши /help")
 
     logger.info("Бот запущен успешно...")
-    bot.polling(non_stop=True, interval=0)
 except Exception as e:
     logger.error(f"Ошибка при запуске - {e}")
 
@@ -88,4 +89,8 @@ def callback_worker(call):
         # код сохранения данных, или их обработки
         bot.send_message(call.message.chat.id, "Запомню : )")
     elif call.data == "no":
+
         ...  # переспрашиваем
+
+
+bot.polling(non_stop=True, interval=0)
